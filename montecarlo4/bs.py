@@ -1,4 +1,4 @@
-"""test"""     
+"""The bs.py file contains a class that creates a bitstring object"""     
 
 import numpy as np
 class BitString:

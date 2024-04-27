@@ -1,4 +1,4 @@
-"""test """  
+"""The ising.py file conatins a class that creates an Ising Hamiltonian object"""  
 import numpy as np
 from .bs import BitString
 
