@@ -26,7 +26,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2  
+        uses: actions/checkout@v2  # Using the latest version within the v2 series
 
       - name: Additional info about the build
         run: |
