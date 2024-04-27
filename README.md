@@ -16,3 +16,6 @@ Copyright (c) 2024, Alec Burnett
  
 Project based on the 
 [Computational Molecular Science Python Cookiecutter](https://github.com/molssi/cookiecutter-cms) version 1.1.
+
+Read The Docs Website:
+https://montecarlo4.readthedocs.io/en/latest/
