@@ -6,10 +6,8 @@ Unit and regression test for the montecarlo4 package.
 import sys
 
 import pytest
-
 import montecarlo4
 from montecarlo4 import *
-import pytest
 import networkx as nx
 
 
@@ -83,20 +81,6 @@ def test_final_bs():
 
 
 
-def get_IsingHamiltonian(G, mus=None):
-    if mus == None:
-        mus = np.zeros(len(G.nodes()))
-
-    if len(G.nodes()) != len(mus):
-        error("DimensionMismatch")
-
-    if len(G.nodes()) != len(mus):
-        error(" Dimension Mismatch")
-    J = [[] for i in G.nodes()]
-    for e in G.edges:
-        J[e[0]].append((e[1], G.edges[e]['weight']))
-        J[e[1]].append((e[0], G.edges[e]['weight']))
-    return montecarlo4.IsingHamiltonian(J,mus)
 
 def test_ising():
     N = 6
@@ -107,7 +91,20 @@ def test_ising():
     for e in G.edges:
         G.edges[e]['weight'] = Jval
 
-    
+    def get_IsingHamiltonian(G, mus=None):
+        if mus == None:
+            mus = np.zeros(len(G.nodes()))
+
+        if len(G.nodes()) != len(mus):
+            error("DimensionMismatch")
+
+        if len(G.nodes()) != len(mus):
+            error(" Dimension Mismatch")
+        J = [[] for i in G.nodes()]
+        for e in G.edges:
+            J[e[0]].append((e[1], G.edges[e]['weight']))
+            J[e[1]].append((e[0], G.edges[e]['weight']))
+        return montecarlo4.IsingHamiltonian(J,mus)
     conf = montecarlo4.BitString(N)
     ham = get_IsingHamiltonian(G)
 
