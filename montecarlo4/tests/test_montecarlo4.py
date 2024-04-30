@@ -10,7 +10,7 @@ import pytest
 import montecarlo4
 from montecarlo4 import *
 import pytest
-
+import networkx as nx
 
 
 def test_montecarlo4_imported():
@@ -33,7 +33,9 @@ def test_bs_flip():
 
     assert(len(my_bs) == 8)
 
-def bs_int_config_test():
+
+
+def test_bs_int_config():
     """
     A fuction that tests set_int_config method of bitstring class
     """
@@ -48,7 +50,9 @@ def bs_int_config_test():
         my_bs.set_int_config(i) # Converts from integer to binary
         assert(my_bs.int() == i) # Converts back from binary to integer and tests
 
-def bs_on_off_test():
+
+
+def test_bs_on_off():
     """
     A function to test on / off and int methods for bitstring class
     """
@@ -59,7 +63,9 @@ def bs_on_off_test():
     assert(my_bs.off() == 8)
     assert(my_bs.int() == 3220)
 
-def final_bs_test():
+
+
+def test_final_bs():
     """
     a function that tests set_config and set_int_config to make sure they are equivalent
     """
@@ -74,6 +80,8 @@ def final_bs_test():
 
     my_bs2.flip_site(5)
     assert(my_bs1 != my_bs2)
+
+
 
 def get_IsingHamiltonian(G, mus=None):
     if mus == None:
@@ -90,18 +98,21 @@ def get_IsingHamiltonian(G, mus=None):
         J[e[1]].append((e[0], G.edges[e]['weight']))
     return montecarlo4.IsingHamiltonian(J,mus)
 
-def ising_test():
+def test_ising():
+    N = 6
+    Jval = 2.0
+    G = nx.Graph()
+    G.add_nodes_from([i for i in range(N)])
+    G.add_edges_from([(i,(i+1)% G.number_of_nodes() ) for i in range(N)])
+    for e in G.edges:
+        G.edges[e]['weight'] = Jval
+
+    
     conf = montecarlo4.BitString(N)
     ham = get_IsingHamiltonian(G)
 
     # Compute the average values for Temperature = 1
     E, M, HC, MS = ham.compute_average_values(1)
-
-
-    print(" E  = %12.8f" %E)
-    print(" M  = %12.8f" %M)
-    print(" HC = %12.8f" %HC)
-    print(" MS = %12.8f" %MS)
 
     assert(np.isclose(E,  -11.95991923))
     assert(np.isclose(M,   -0.00000000))
