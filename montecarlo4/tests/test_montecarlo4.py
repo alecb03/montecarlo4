@@ -83,6 +83,7 @@ def test_final_bs():
 
 
 def test_ising():
+    import networkx as nx
     N = 6
     Jval = 2.0
     G = nx.Graph()
