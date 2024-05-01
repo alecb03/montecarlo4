@@ -154,6 +154,9 @@ class IsingHamiltonian:
         return E, M, HC, MS
     
     def get_lowest_energy_config(self):
+        """
+        Finds the lowest energy and the bitsting associated with that lowest energy
+        """
         x = [] # Store list of indices
         y = [] # Store list of energies
         xmin = None # configuration of minimum energy configuration
