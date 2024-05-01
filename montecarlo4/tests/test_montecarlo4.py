@@ -11,6 +11,7 @@ from montecarlo4 import *
 import networkx as nx
 
 
+
 def test_montecarlo4_imported():
     """Sample test, will always pass so long as import statement worked."""
     assert "montecarlo4" in sys.modules
@@ -116,5 +117,3 @@ def test_ising():
     assert(np.isclose(M,   -0.00000000))
     assert(np.isclose(HC,   0.31925472))
     assert(np.isclose(MS,   0.01202961))
-
-            
