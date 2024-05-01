@@ -20,7 +20,7 @@ montecarlo4.bs module
    :undoc-members:
    :show-inheritance:
 
-Module contents
+montecarlo4.functions module
 ----------------------------
 
 .. automodule:: montecarlo4.functions
