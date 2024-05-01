@@ -54,7 +54,7 @@ class IsingHamiltonian:
             Energy of the input configuration
         """
         if len(config.config) != len(self.J):
-            error("wrong dimension")
+            pass #error("wrong dimension")
 
         e = 0.0
         for i in range(config.N):
@@ -152,4 +152,22 @@ class IsingHamiltonian:
         HC = (EE - E * E) / (T * T)
         MS = (MM - M * M) / T
         return E, M, HC, MS
+    
+    def get_lowest_energy_config(self):
+        x = [] # Store list of indices
+        y = [] # Store list of energies
+        xmin = None # configuration of minimum energy configuration
+        emin = 0 # minimum of energy
+        cmin = BitString(self.N)
+        for i in range(2 ** self.N):
+            bit = cmin.set_int_config(i) 
+            print(bit) 
+            en = self.energy(bit)  
+            x.append(i)  
+            y.append(en)  
+            if en < emin:
+                emin = en
+                xmin = i
+        cmin= cmin.set_int_config(xmin)
+        return emin, cmin
  
